@@ -106,9 +106,18 @@ def play_game(word_list):
     # If the user guesses the word, print "Congratulations! You won!"
     # If the user runs out of lives, print "You lost! The word was {word}"
     
-    pass
+    #pass
+    while True:
+        letter = game.ask_letter()
+        game.check_letter(letter)
 
+        if '_' not in game.word_guessed:
+            print("Congratulations! You won!")
+            break
 
+        if game.num_lives == 0:
+            print(f'You lost! The word was {game.word}')
+            break
 
 if __name__ == '__main__':
     word_list = ['apple', 'banana', 'orange', 'pear', 'strawberry', 'watermelon']
