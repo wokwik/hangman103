@@ -58,7 +58,6 @@ class Hangman:
         print(f'The mistery word has {self.num_letters} characters')
         print(f'{self.word_guessed}')
 
-
     def check_letter(self, letter) -> None:
         '''
         Checks if the letter is in the word.
@@ -76,8 +75,20 @@ class Hangman:
         # TODO 3: If the letter is in the word, the number of UNIQUE letters in the word that have not been guessed yet has to be reduced by 1
         # TODO 3: If the letter is not in the word, reduce the number of lives by 1
         # Be careful! A letter can contain the same letter more than once. TIP: Take a look at the index() method in the string class
-        pass
+        #pass
 
+        if letter.lower() in self.word.lower():
+            positions = [pos for pos, char in enumerate(self.word.lower()) if char == letter.lower()]
+            for i in positions:
+                self.word_guessed[i] = letter.lower()
+            self.num_letters -= 1
+            print("Correct guess")
+            print(f'The mistery word has {self.num_letters} characters missing')
+            print(f'{self.word_guessed}')
+        else:
+            self.num_lives -= 1
+            print("Wrong guess")
+            print(f'Number of lives reduced to {self.num_lives}.')
 
     def ask_letter(self):
         '''
