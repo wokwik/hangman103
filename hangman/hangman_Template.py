@@ -45,7 +45,19 @@ class Hangman:
         # TODO 2: Print two message upon initialization:
         # 1. "The mistery word has {num_letters} characters"
         # 2. {word_guessed}
-        pass
+        #pass
+        import random
+
+        self.num_lives = num_lives
+        self.word_list = word_list
+        self.word = random.choice(word_list)
+        self.word_guessed = ['_' for char in self.word]
+        self.num_letters = len(''.join(set(self.word)))
+        self.list_letters = []
+
+        print(f'The mistery word has {self.num_letters} characters')
+        print(f'{self.word_guessed}')
+
 
     def check_letter(self, letter) -> None:
         '''
@@ -66,6 +78,7 @@ class Hangman:
         # Be careful! A letter can contain the same letter more than once. TIP: Take a look at the index() method in the string class
         pass
 
+
     def ask_letter(self):
         '''
         Asks the user for a letter and checks two things:
@@ -80,6 +93,8 @@ class Hangman:
         # TODO 3: If the letter is valid, call the check_letter method
         pass
 
+
+
 def play_game(word_list):
     # As an aid, part of the code is already provided:
     game = Hangman(word_list, num_lives=5)
@@ -90,8 +105,10 @@ def play_game(word_list):
     # TODO 4: Iteratively ask the user for a letter until the user guesses the word or runs out of lives
     # If the user guesses the word, print "Congratulations! You won!"
     # If the user runs out of lives, print "You lost! The word was {word}"
-
+    
     pass
+
+
 
 if __name__ == '__main__':
     word_list = ['apple', 'banana', 'orange', 'pear', 'strawberry', 'watermelon']
