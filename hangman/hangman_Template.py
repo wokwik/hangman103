@@ -69,6 +69,12 @@ class Hangman:
         letter: str
             The letter to be checked
 
+        Returns:
+        ----------
+        missing_letters: int
+            The number of missing letters still remaining for the player to guess
+        num_lives: int
+            The number of lives still remaining for the player to continue playing
         '''
         # TODO 3: Check if the letter is in the word. TIP: You can use the lower() method to convert the letter to lowercase
         # TODO 3: If the letter is in the word, replace the '_' in the word_guessed list with the letter
@@ -90,6 +96,8 @@ class Hangman:
             print(f'Sorry, {letter} is not in the word. Try again.')
             print(f'Number of lives reduced to {self.num_lives}.')
 
+        return self.word_guessed.count('_'), self.num_lives
+    
     def ask_letter(self):
         '''
         Asks the user for a letter and checks two things:
@@ -137,13 +145,15 @@ def play_game(word_list):
     #pass
     while True:
         letter = game.ask_letter()
-        game.check_letter(letter)
+        missing_letters, num_lives = game.check_letter(letter)
 
-        if '_' not in game.word_guessed:
+        #if '_' not in game.word_guessed:
+        if missing_letters == 0:
             print("Congratulations! You won!")
             break
 
-        if game.num_lives == 0:
+        #if game.num_lives == 0:
+        if num_lives == 0:
             print(f'You lost! The word was {game.word}')
             break
 
